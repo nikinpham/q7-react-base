@@ -1,1 +1,1 @@
-export { default as QButton } from "./QButton";
+export { default as QFooter } from "./QFooter";

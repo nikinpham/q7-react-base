@@ -1,9 +1,7 @@
+import { TodoList } from "@/pages";
+
 const App = () => {
-  return (
-    <div className="">
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>;
-    </div>
-  );
+  return <TodoList />;
 };
 
 export default App;
