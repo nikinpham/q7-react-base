@@ -25,8 +25,9 @@ const ListItem = (props: TListItemProps) => {
 
   return (
     <div className="py-1 flex justify-between items-center">
-      <div className="flex gap-2 items-center">
+      <div className="flex flex-1 gap-1 items-center">
         <button
+          className="w-[20px]"
           onClick={() => {
             handleCompleteTodo(item.id);
           }}
@@ -36,30 +37,30 @@ const ListItem = (props: TListItemProps) => {
             className={!item.isCompleted ? "opacity-10" : ""}
           />
         </button>
-        <div className="flex flex-col">
-          {!isEdited ? (
-            <p
-              onDoubleClick={() => setIsEdited(true)}
-              key={item.id}
-              className={`text-left text-green-800 ${
-                item.isCompleted ? "line-through" : ""
-              }`}
-            >
-              {item.content}
-            </p>
-          ) : (
-            <input
-              onBlur={() => setIsEdited(false)}
-              type="text"
-              className="w-full text-red-700 rounded-md border-none focus:outline-none "
-              placeholder={t("PLACEHOLDER")}
-              value={item.content}
-              onChange={(e) => handleEditTodo(item.id, e.target.value)}
-            />
-          )}
-        </div>
+        {!isEdited ? (
+          <div
+            className={`text-wrap block flex-wrap text-green-800 ${
+              item.isCompleted ? "line-through" : ""
+            }`}
+            onDoubleClick={() => setIsEdited(true)}
+          >
+            {item.content}
+          </div>
+        ) : (
+          <input
+            onBlur={() => {
+              setIsEdited(false);
+            }}
+            autoFocus
+            type="text"
+            className="w-full text-red-700 rounded-md border-none focus:outline-none "
+            placeholder={t("PLACEHOLDER")}
+            value={item.content}
+            onChange={(e) => handleEditTodo(item.id, e.target.value)}
+          />
+        )}
       </div>
-      <div className="flex gap-1">
+      <div className="flex gap-1 w-[44px]">
         <button
           onClick={() => {
             handleImportantTodo(item.id);

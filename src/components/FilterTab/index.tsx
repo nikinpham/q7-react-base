@@ -21,7 +21,7 @@ const FilterTab = (props: TFilterTabProps) => {
             key={item}
             className={`px-2 ${
               activeFilter === item
-                ? "rounded border-2 border-yellow-800 text-white bg-red-800"
+                ? "rounded border-2  text-white bg-yellow-600"
                 : ""
             } `}
           >
