@@ -1,1 +1,1 @@
-export { default as QFooter } from "./QFooter";
+export { default as FilterTab } from "./FilterTab";

@@ -7,3 +7,15 @@
         font-family: "Proxima Nova", system-ui, sans-serif;
     }
 }
+
+.scroll-hidden::-webkit-scrollbar {
+    display: none;
+    /* For Chrome, Safari, and Opera */
+}
+
+.scroll-hidden {
+    -ms-overflow-style: none;
+    /* For Internet Explorer and Edge */
+    scrollbar-width: none;
+    /* For Firefox */
+}
