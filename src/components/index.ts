@@ -1,1 +1,7 @@
 export { default as QButton } from "./QButton";
+export { default as Header } from "./Header";
+export { default as BButton } from "./BButton";
+export { default as Input } from "./Input/Input";
+export { default as BDropdown } from "./BDropdown/BDropdown";
+export { default as ProductCard } from "./ProductCard/ProductCard";
+export { default as ProductList } from "./ProductList/ProductList";
