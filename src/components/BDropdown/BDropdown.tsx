@@ -3,13 +3,23 @@ import BButton from "../BButton/index";
 import "./BDropdown.scss";
 
 type TDropdownProps = {
-  children: ReactNode;
+  children?: ReactNode;
   options: string[];
   onSelect: (selectedOption: string) => void;
+  dropdownOptions?: string;
+  dropdownOption?: string;
+  childrenLi?: ReactNode;
 };
 
 const BDropdown = (props: TDropdownProps) => {
-  const { children, options, onSelect } = props;
+  const {
+    children,
+    options,
+    onSelect,
+    dropdownOptions,
+    dropdownOption,
+    childrenLi,
+  } = props;
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelect = (option: string) => {
@@ -21,11 +31,16 @@ const BDropdown = (props: TDropdownProps) => {
       {/* <button onClick={() => setIsOpen(!isOpen)}>{children}</button> */}
       <BButton children={children} onClick={() => setIsOpen(!isOpen)}></BButton>
       {isOpen && (
-        <ul>
+        <ul className={dropdownOptions}>
           {options.map((option) => (
-            <span key={option} onClick={() => handleSelect(option)}>
+            <li
+              className={dropdownOption}
+              key={option}
+              onClick={() => handleSelect(option)}
+            >
+              {childrenLi}
               {option}
-            </span>
+            </li>
           ))}
         </ul>
       )}

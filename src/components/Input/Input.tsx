@@ -2,12 +2,14 @@ import React, { FC, ReactElement } from "react";
 import "./Input.scss";
 
 type FormInputProps = {
+  className?: string;
   label?: string;
   type: string;
   name?: string;
   value: string;
   required?: boolean;
   id?: string;
+  placeholder?: string;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -18,10 +20,12 @@ const Input: FC<FormInputProps> = ({
   value,
   required,
   id,
+  placeholder,
+  className,
   handleChange,
 }): ReactElement => {
   return (
-    <div className="mb-4">
+    <div className="">
       <label htmlFor={name} className="block text-sm font-medium text-gray-600">
         {label}
       </label>
@@ -32,7 +36,8 @@ const Input: FC<FormInputProps> = ({
         value={value}
         onChange={handleChange}
         required={required}
-        className="mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+        className={className}
+        placeholder={placeholder}
       />
     </div>
   );

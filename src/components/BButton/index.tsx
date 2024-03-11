@@ -1,28 +1,18 @@
-import React, { FC, ReactElement, ReactNode } from "react";
+import { ReactNode } from "react";
 import "./BButton.scss";
 
-type PropsType = {
+type TPropsType = {
   children: ReactNode;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
   inverted?: boolean;
+  className?: string;
 };
 
-const BButton: FC<PropsType> = ({
-  children,
-  inverted,
-  type,
-  onClick,
-  ...otherProps
-}): ReactElement => {
+const BButton = (props: TPropsType) => {
+  const { children, onClick, type, className } = props;
   return (
-    <button
-      className={`${inverted ? "inverted" : ""}
-       custom-button `}
-      {...otherProps}
-      type={type}
-      onClick={onClick}
-    >
+    <button className={className} type={type} onClick={onClick}>
       {children}
     </button>
   );

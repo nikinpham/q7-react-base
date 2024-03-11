@@ -1,0 +1,86 @@
+.sidebar {
+    width: 250px;
+    background-color: #fff; // Màu nền
+    border-right: 1px solid #ddd; // Viền phía bên phải
+  
+    &.collapsed {
+      width: 90px; // Kích thước sidebar khi bị thu gọn
+    }
+    .collapsed li:hover ul {
+      display: block;
+    }
+    
+    /* Hiển thị background màu cam khi hover */
+    .collapsed li:hover .text-gray-500 {
+      background-color: orange;
+    }
+    .collapsed ul ul {
+      position: absolute;
+      top: 0;
+      background-color: white;
+    }
+    .collapsed .text-gray-500:hover {
+      transform: scale(1.1); 
+      background-color: orange;
+      
+      padding: calc(4px - 2px);
+      color: white
+    }
+    .line {
+      width: 0.3rem;
+      background-color: #fc8019;
+      display: block;
+      height: 0.1rem;
+      margin-bottom: 0.375rem;
+      margin-right: 1.5rem;
+      margin-top: 0.375rem;
+      transition: all 0.3s ease-in-out;
+      position: absolute; 
+      left: -1.5rem; // Điều chỉnh vị trí ban đầu của line
+      top: 50%; // Điều chỉnh vị trí ban đầu của line
+    }
+    .transition-all {
+      transition-property: all;
+      transition-duration: 0.5s; /* Thay đổi giá trị tùy theo thời gian bạn muốn */
+  }
+    .has-arrow {
+        &::after {
+            text-align: center;
+            border-color: #c8c8c8 transparent transparent #c8c8c8;
+            border-width: .3125rem;
+            content: "";
+            height: .5em;
+            position: absolute;
+            right: 1em;
+            transform: rotate(135deg);
+            transition: all .3s ease-out;
+            width: .5em;
+            top: calc(50% - 0.25em);
+        }
+    
+        &.dropdownNarrow {
+            &::after{
+                transform: rotate(225deg);
+            }
+            
+        }
+    }
+    
+    .submenu-text {
+        position: relative; 
+    transition: color 0.3s; 
+    
+      &:hover {
+        .line {
+          width:calc(0.5rem + 0.3rem);
+        }
+        .submenu-title {
+          transform: translateX(0.3rem);
+        }
+        
+      }
+    }
+  
+    
+  }
+  

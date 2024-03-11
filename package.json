@@ -14,11 +14,15 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@heroicons/react": "^2.1.1",
+    "axios": "^1.6.7",
     "i18next": "^23.7.18",
+    "lucide-react": "^0.341.0",
     "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-i18next": "^14.0.1"
+    "react-i18next": "^14.0.1",
+    "react-perfect-scrollbar": "^1.5.8",
+    "swiper": "^11.0.7"
   },
   "devDependencies": {
     "@types/node": "^20.11.6",
