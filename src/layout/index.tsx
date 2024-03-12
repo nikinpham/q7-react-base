@@ -35,15 +35,15 @@ const Layout = (props: TLayout) => {
   }, [isSidebarCollapsed]);
 
   return (
-    <div className="h-screen">
-      <div className="flex">
+    <div className="h-screen ">
+      <div className="flex ">
         <NavHead toggleSidebar={toggleSidebar} collapsed={isSidebarCollapsed} />
         <Header />
       </div>
       <div className="bg-orange-500">
-        <div className=" flex bg-white rounded-tl-3xl transition-all ease-in-out duration-500">
+        <div className=" flex bg-white rounded-t-3xl transition-all ease-in-out duration-500">
           <Sidebar collapsed={isSidebarCollapsed} />
-          <div className="container mt-9 px-10 transition-all ease-in-out duration-500">
+          <div className="container  mt-9 px-10 transition-all ease-in-out duration-500 ">
             {props.children}
           </div>
         </div>

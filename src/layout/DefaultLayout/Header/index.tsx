@@ -18,7 +18,7 @@ const Header = () => {
     setInputValue(event.target.value);
   };
   return (
-    <div className="header w-full">
+    <div className="header w-full ">
       <div className="header-content bg-orange-500 flex items-center p-4 h-[75px] pb-[-30px] ">
         <div>
           <div className="header-left flex items-center h-[60px]">

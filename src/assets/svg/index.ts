@@ -7,3 +7,5 @@ export {default as Beverage } from "./Category/Beverage";
 export {default as Burger } from "./Category/Burger";
 export {default as Chicken } from "./Category/Chicken";
 export {default as Pizza } from "./Category/Pizza";
+export {default as SquarePlus } from "./SquarePlus";
+
