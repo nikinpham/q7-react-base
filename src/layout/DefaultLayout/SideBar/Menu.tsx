@@ -29,8 +29,8 @@ export const MenuList: MenuItem[] = [
         to: "/",
       },
       {
-        title: "Dashboard Dark",
-        to: "/dashboard-dark",
+        title: "Login",
+        to: "/login",
       },
       {
         title: "Food Order",

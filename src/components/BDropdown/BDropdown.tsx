@@ -8,7 +8,7 @@ type TDropdownProps = {
   onSelect: (selectedOption: string) => void;
   dropdownOptions?: string;
   dropdownOption?: string;
-  childrenLi?: ReactNode;
+  iconDropdown?: ReactNode;
 };
 
 const BDropdown = (props: TDropdownProps) => {
@@ -18,7 +18,7 @@ const BDropdown = (props: TDropdownProps) => {
     onSelect,
     dropdownOptions,
     dropdownOption,
-    childrenLi,
+    iconDropdown,
   } = props;
   const [isOpen, setIsOpen] = useState(false);
 
@@ -38,7 +38,7 @@ const BDropdown = (props: TDropdownProps) => {
               key={option}
               onClick={() => handleSelect(option)}
             >
-              {childrenLi}
+              {iconDropdown}
               {option}
             </li>
           ))}

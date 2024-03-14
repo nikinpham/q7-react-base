@@ -37,6 +37,7 @@ const NavHead = (props: TNavHead) => {
             src={ReactLogo}
             alt="Logo React"
           />
+
           <span
             className={` text-xl font-extrabold text-white ml-[10px] overflow-hidden  ${
               !props.collapsed ? "w-52 mb-2 " : "w-0"

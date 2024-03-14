@@ -1,9 +1,9 @@
 // import { useState, useEffect } from "react";
 // import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { ChevronRight, Heart, Star } from "lucide-react";
+import { ChevronRight, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useReducer, useState } from "react";
+import { useState } from "react";
 import "swiper/scss";
 import "./Home.scss";
 import { Autoplay, Pagination } from "swiper/modules";
@@ -15,6 +15,7 @@ import {
   Pizza,
   SquarePlus,
 } from "@/assets/svg";
+import { Review } from "@/components";
 const Home = () => {
   // const [inputValue, setInputValue] = useState("");
   // const [products, setProducts] = useState([]);
@@ -82,6 +83,7 @@ const Home = () => {
       offer: "15% Off",
       badge: "badge-danger",
       price: "$5.59",
+      star: 3,
       heart: false,
       check: false,
     },
@@ -94,6 +96,7 @@ const Home = () => {
       badge: "badge-warning",
 
       price: "$5.59",
+      star: 3,
       heart: true,
       check: false,
     },
@@ -105,6 +108,7 @@ const Home = () => {
       offer: "15% Off",
       badge: "badge-danger",
       price: "$5.59",
+      star: 3,
       heart: false,
       check: false,
     },
@@ -116,6 +120,7 @@ const Home = () => {
       offer: "15% Off",
       badge: "badge-danger",
       price: "$5.59",
+      star: 3,
       heart: false,
       check: false,
     },
@@ -128,6 +133,7 @@ const Home = () => {
 
       badge: "badge-warning",
       price: "$5.59",
+      star: 3,
       heart: true,
       check: false,
     },
@@ -139,6 +145,7 @@ const Home = () => {
       offer: "15% Off",
       badge: "badge-danger",
       price: "$5.59",
+      star: 3,
       heart: false,
       check: false,
     },
@@ -205,7 +212,11 @@ const Home = () => {
   const [dataHeart, setDataHeart] = useState(sliderData);
   const [dataHeartOrder, setDataHeartOrder] = useState(sliderOrder);
   const [orderBlog, setOrderBlog] = useState(orderBlogs);
+  const [starRating, setStarRating] = useState<{ [id: string]: number }>({});
 
+  const handleStarRatingChange = (id: string, newRating: number) => {
+    setStarRating({ ...starRating, [id]: newRating });
+  };
   const handleCountAdd = (id: number) => {
     setOrderBlog((prevState) => {
       return prevState.map((item) => {
@@ -233,24 +244,24 @@ const Home = () => {
   const handleClickFavorite = (id: string): void => {
     let temp = dataHeart.map((data) => {
       if (id === data.id) {
-        const updatedData = { ...data, heart: !data.heart };
-        console.log(updatedData.heart);
-        return updatedData;
+        console.log(data);
+        return { ...data, heart: !data.heart };
       }
 
       return data;
     });
+
     setDataHeart(temp);
   };
-  const handleClickFavoriteOrder = (id: string): void => {
+  const handleClickOrder = (id: string): void => {
     let temp = dataHeartOrder.map((data) => {
       if (id === data.id) {
-        const updatedData = { ...data, heart: !data.heart };
-        console.log(updatedData.heart);
-        return updatedData;
+        console.log(data);
+        return { ...data, heart: !data.heart };
       }
       return data;
     });
+
     setDataHeartOrder(temp);
   };
   // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -438,17 +449,12 @@ const Home = () => {
                       />
                     </div>
                     <div className="card-footer border-0 px-3.5 py-4">
-                      <ul className="flex align-items-center mb-2">
-                        <li>
-                          <Star
-                            size={18}
-                            className="cursor-pointer text-gray-500 "
-                            style={{
-                              fill: "currentColor",
-                            }}
-                          ></Star>
-                        </li>
-                      </ul>
+                      <Review
+                        star={starRating[data.id] || data.star}
+                        onstarChange={(newRating) =>
+                          handleStarRatingChange(data.id, newRating)
+                        }
+                      ></Review>
                       <div className="common flex  items-end	 justify-between">
                         <div className="grow">
                           <Link to={"#"}>
@@ -456,7 +462,7 @@ const Home = () => {
                               {data.title}
                             </h4>
                           </Link>
-                          <h3 className="font-bold text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-orange-500 ">
+                          <h3 className="font-bold text-base sm:text-lg md:text-xl text-orange-500 ">
                             {data.price}
                           </h3>
                         </div>
@@ -519,11 +525,19 @@ const Home = () => {
                 },
               }}
             >
-              {sliderOrder.map((data, index) => (
-                <SwiperSlide key={index}>
-                  <div className="card b-hover review style-1" key={index}>
-                    <div className="px-[1.65rem] py-[0.9rem] flex items-center justify-center text-center  py-3 ">
-                      <img src={data.image} alt="" className="w-40 h-40" />
+              {dataHeartOrder.map((data) => (
+                <SwiperSlide key={data.id}>
+                  <div className="card b-hover review style-1" key={data.id}>
+                    <div
+                      className={`px-[1.65rem] py-[0.9rem] flex items-center justify-center text-center  py-3  ${
+                        data.heart ? "active" : ""
+                      }`}
+                    >
+                      <img
+                        src={data.image}
+                        alt=""
+                        className="w-[8.75rem] h-[8.75rem]"
+                      />
                       <Heart
                         size={17.5}
                         className={`cursor-pointer absolute mt-4 mr-3.5 right-0 top-0 ${
@@ -532,20 +546,18 @@ const Home = () => {
                         style={{
                           fill: "currentColor",
                         }}
-                        onClick={() => handleClickFavoriteOrder(data.id)}
+                        onClick={() => handleClickOrder(data.id)}
                       />
                     </div>
                     <div className="card-footer px-[1.65rem] pb-[1.1rem] border-0 text-center">
                       <div>
                         <Link to={"#"}>
                           <h4 className="text-lg font-semibold">
-                            {" "}
-                            {data.title}{" "}
+                            {data.title}
                           </h4>
                         </Link>
-                        <h3 className="font-bold text-primary text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-orange-500">
-                          {" "}
-                          $5.59{" "}
+                        <h3 className="font-bold text-primary text-base sm:text-lg md:text-xl  text-orange-500">
+                          $5.59
                         </h3>
                         <div className="flex items-center justify-center text-[#777777] text-xs pt-2 font-medium">
                           <p className="pr-2"> 4.97 km </p>
@@ -582,12 +594,10 @@ const Home = () => {
                   <div className="card bg-orange-500 border-orange-500">
                     <div className="p-[1.65rem]">
                       <h4 className="text-lg font-medium text-[#fff]">
-                        {" "}
-                        Balance{" "}
-                      </h4>{" "}
+                        Balance
+                      </h4>
                       <h2 className="text-4xl font-bold text-[#fff] mb-[0.9rem]">
-                        {" "}
-                        $12.000{" "}
+                        $12.000
                       </h2>
                       <div className="change-btn flex">
                         <Link
@@ -617,7 +627,7 @@ const Home = () => {
                             />
                           </svg>
                           Top Up
-                        </Link>{" "}
+                        </Link>
                         <Link
                           to={"#"}
                           className="rounded-md bg-white text-[#3d4152] pl-[0.55rem] py-[0.55rem] pr-[0.825rem] flex items-center font-medium h-[43px] text-sm "
@@ -644,15 +654,14 @@ const Home = () => {
                               fill="#3D4152"
                             />
                           </svg>
-                          Transfer{" "}
+                          Transfer
                         </Link>
                       </div>
                     </div>
                   </div>
                   <div className="pb-[1.75rem] bb-border">
                     <p className="font-medium text-orange-500 text-xs mb-[0.9rem]">
-                      {" "}
-                      Your Address{" "}
+                      Your Address
                     </p>
                     <div className="flex align-center justify-between mb-[0.45rem]">
                       <h4 className="flex text-base font-semibold">
@@ -675,33 +684,30 @@ const Home = () => {
                         to={"#"}
                         className="py-[3.5px] px-[12.25px] rounded font-medium border text-xs text-orange-500 border-orange-500"
                       >
-                        {" "}
-                        Change{" "}
-                      </Link>{" "}
+                        Change
+                      </Link>
                     </div>
                     <p className="text-sm text-[#777777] font-normal mb-4">
-                      {" "}
                       Lorem ipsum dolor sit amet, consectetur elit, sed do
-                      eiusmod tempor incididunt.{" "}
+                      eiusmod tempor incididunt.
                     </p>
                     <div className="flex">
                       <button
                         type="button"
                         className="border border-orange-500 rounded-md mr-2 font-semibold px-[1.15rem] py-[0.67rem] text-sm text-white bg-orange-500"
                       >
-                        Add Details{" "}
-                      </button>{" "}
+                        Add Details
+                      </button>
                       {/* <!-- Modal --> */}
                       <button
                         type="button"
                         className="border border-orange-500 rounded-md font-semibold px-[1.15rem] py-[0.67rem] text-sm text-white bg-orange-500"
                       >
-                        {" "}
-                        Add Note{" "}
-                      </button>{" "}
-                      {/* <!-- Modal --> */}{" "}
+                        Add Note
+                      </button>
+                      {/* <!-- Modal --> */}
                     </div>
-                  </div>{" "}
+                  </div>
                   {orderBlog.map((item, index) => (
                     <div
                       className="flex items-center my-[14px] p-2"
@@ -713,46 +719,41 @@ const Home = () => {
                           alt=""
                           className="w-[68.4px] h-[68.4px]"
                         />
-                      </div>{" "}
+                      </div>
                       <div className="flex flex-col flex-grow ">
                         <div className="flex items-center justify-between">
                           <h4 className="font-semibold text-lg">
-                            {" "}
                             <Link to={"#"}> Pepperoni Pizza </Link>
                           </h4>
                           <h4 className="text-orange-500 ml-2 mb-2 font-bold">
-                            {" "}
-                            +$5.59{" "}
-                          </h4>{" "}
+                            +$5.59
+                          </h4>
                         </div>
                         <div className="flex items-center justify-between">
                           <span className="text-xs text-[#777777] font-normal">
-                            {" "}
-                            x1{" "}
+                            x1
                           </span>
                           <div className="bg-[#fff] border border-orange-500 rounded-lg text-sm font-normal   ">
                             <button
                               className="border-r border-solid border-orange-500 h-7 w-[30px] text-orange-500"
                               onClick={() => handleCountMinus(item.id)}
                             >
-                              {" "}
-                              -{" "}
-                            </button>{" "}
+                              -
+                            </button>
                             <input
                               type="text"
                               className="w-5 text-center"
                               value={item.number}
-                            />{" "}
+                            />
                             <button
                               className="border-l border-solid border-orange-500 h-7 w-[30px] text-orange-500"
                               onClick={() => handleCountAdd(item.id)}
                             >
-                              {" "}
-                              +{" "}
-                            </button>{" "}
-                          </div>{" "}
-                        </div>{" "}
-                      </div>{" "}
+                              +
+                            </button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   ))}
                   <hr className="my-2 border-t-1 border-orange-500 opacity-90" />
@@ -760,27 +761,21 @@ const Home = () => {
                 <div className="px-[26.25px] pb-[17.5px]">
                   <div className="flex items-center justify-between">
                     <p className="mb-3.5 text-sm text-[#777777] font-normal">
-                      {" "}
-                      Service{" "}
+                      Service
                     </p>
-                    <h4 className="font-medium mb-[7px] text-lg">
-                      {" "}
-                      +$1.00{" "}
-                    </h4>{" "}
+                    <h4 className="font-medium mb-[7px] text-lg">+$1.00</h4>
                   </div>
                   <div className="flex items-center justify-between mb-3.5  ">
                     <h4 className="font-medium text-lg"> Total </h4>
                     <h3 className="font-medium text-orange-500 text-2xl">
-                      {" "}
-                      $202.00{" "}
-                    </h3>{" "}
+                      $202.00
+                    </h3>
                   </div>
                   <Link
                     to="/checkout"
                     className="inline-block w-full text-center border border-orange-500 rounded-lg  text-sm font-medium py-[.7rem] px-[1.15rem] bg-orange-500 text-[#fff]"
                   >
-                    {" "}
-                    Checkout{" "}
+                    Checkout
                   </Link>
                 </div>
               </div>
@@ -792,13 +787,11 @@ const Home = () => {
                 <div className="flex justify-between">
                   <div className="text-[#fff]">
                     <h4 className="text-xl font-semibold mb-[7px]">
-                      {" "}
-                      Get Discount VoucherUp To 20%{" "}
+                      Get Discount VoucherUp To 20%
                     </h4>
                     <p className="w-3/4 text-sm">
-                      {" "}
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
-                    </p>{" "}
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </p>
                   </div>
                   <div className="dlab-img overflow-hidden">
                     <img
@@ -810,7 +803,7 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-            </div>{" "}
+            </div>
           </div>
         </div>
       </div>

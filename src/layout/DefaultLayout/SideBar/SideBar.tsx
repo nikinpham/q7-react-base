@@ -78,7 +78,7 @@ const SideBar = (props: TSideBar) => {
                       <span
                         className={`text-gray-500 mr-3 ${
                           state.active === data.title ? "text-white" : ""
-                        }`}
+                        } ${index === 1 && !expanded ? "mt-10" : ""}`}
                       >
                         {data.iconStyle}
                       </span>
