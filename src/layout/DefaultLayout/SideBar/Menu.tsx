@@ -1,4 +1,4 @@
-import { LayoutDashboard } from "lucide-react";
+import { Dashboard } from "@/assets/svg";
 import { ReactNode } from "react";
 export interface MenuItem {
   title: string;
@@ -18,7 +18,7 @@ export const MenuList: MenuItem[] = [
   {
     title: "Dashboard",
     classsChange: "mm-collapse",
-    iconStyle: <LayoutDashboard size={21} />,
+    iconStyle: <Dashboard size="21" fillColor="#7E808C" />,
     content: [
       {
         title: "Settings",
@@ -66,7 +66,7 @@ export const MenuList: MenuItem[] = [
   {
     title: "Restaurant",
     classsChange: "mm-collapse",
-    iconStyle: <LayoutDashboard size={21} />,
+    iconStyle: <Dashboard size="21" fillColor="#7E808C" />,
     content: [
       {
         title: "Restaurant",
@@ -90,7 +90,7 @@ export const MenuList: MenuItem[] = [
   {
     title: "Drivers",
     classsChange: "mm-collapse",
-    iconStyle: <LayoutDashboard size={21} />,
+    iconStyle: <Dashboard size="21" fillColor="#7E808C" />,
     content: [
       {
         title: "Dashboard",
@@ -114,7 +114,7 @@ export const MenuList: MenuItem[] = [
   {
     title: "Apps",
     classsChange: "mm-collapse",
-    iconStyle: <LayoutDashboard size={21} />,
+    iconStyle: <Dashboard size="21" fillColor="#7E808C" />,
     content: [
       {
         title: "Profile",
@@ -186,7 +186,7 @@ export const MenuList: MenuItem[] = [
   {
     title: "Charts",
     classsChange: "mm-collapse",
-    iconStyle: <LayoutDashboard size={21} />,
+    iconStyle: <Dashboard size="21" fillColor="#7E808C" />,
     content: [
       {
         title: "RechartJs",
@@ -210,7 +210,7 @@ export const MenuList: MenuItem[] = [
   {
     title: "Bootstrap",
     classsChange: "mm-collapse",
-    iconStyle: <LayoutDashboard size={21} />,
+    iconStyle: <Dashboard size="21" fillColor="#7E808C" />,
     content: [
       {
         title: "Accordion",
@@ -282,7 +282,7 @@ export const MenuList: MenuItem[] = [
   {
     title: "Plugins",
     classsChange: "mm-collapse",
-    iconStyle: <LayoutDashboard size={21} />,
+    iconStyle: <Dashboard size="21" fillColor="#7E808C" />,
     content: [
       {
         title: "Select 2",
@@ -309,14 +309,14 @@ export const MenuList: MenuItem[] = [
   //Widget
   {
     title: "Widget",
-    iconStyle: <LayoutDashboard size={21} />,
+    iconStyle: <Dashboard size="21" fillColor="#7E808C" />,
     to: "/widget-basic",
   },
   //Forms
   {
     title: "Forms",
     classsChange: "mm-collapse",
-    iconStyle: <LayoutDashboard size={21} />,
+    iconStyle: <Dashboard size="21" fillColor="#7E808C" />,
     content: [
       {
         title: "Form Elements",
@@ -344,7 +344,7 @@ export const MenuList: MenuItem[] = [
   {
     title: "Table",
     classsChange: "mm-collapse",
-    iconStyle: <LayoutDashboard size={21} />,
+    iconStyle: <Dashboard size="21" fillColor="#7E808C" />,
     content: [
       {
         title: "Table Filtering",
@@ -364,7 +364,7 @@ export const MenuList: MenuItem[] = [
   {
     title: "Pages",
     classsChange: "mm-collapse",
-    iconStyle: <LayoutDashboard size={21} />,
+    iconStyle: <Dashboard size="21" fillColor="#7E808C" />,
     content: [
       {
         title: "Error",

@@ -131,6 +131,7 @@ const Header = () => {
                     src="https://fooddesk.dexignlab.com/react/demo/static/media/pic-1.6064ae2bfa1253995744.png"
                     alt="avatar"
                     className="border border-2 border-bold border-[#fff] rounded-full h-[38px] w-[38px]"
+                    id={selectedUser}
                   ></img>
                   {!isMobile && (
                     <div className="flex items-center">

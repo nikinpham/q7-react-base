@@ -60,9 +60,7 @@
   height:3.438rem;
   position:relative;
   
-  @include respond ('desktop'){
-    width:45.063rem;
-  }
+  
   @include respond ('laptop'){
     width:45.063rem;
   }

@@ -1,4 +1,4 @@
-import { Home, Settings, Login } from "@/pages";
+import { Home, Settings, Login, FavoriteFood } from "@/pages";
 const publicRoutes = [
   {
     path: "/",
@@ -12,6 +12,10 @@ const publicRoutes = [
     path: "/login",
     component: Login,
     layout: null,
+  },
+  {
+    path: "/favorite-menu",
+    component: FavoriteFood,
   },
 ];
 
