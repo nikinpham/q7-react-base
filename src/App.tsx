@@ -1,17 +1,14 @@
 import SignUpSucceedPage from "@/pages/templates/SignUpSucceed";
+import { Route, Routes } from "react-router-dom";
 import PageNotFound from "./pages/templates/PageNotFound";
-import SignUpPage from "./pages/SignUp";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<SignUpPage />} />
-        <Route path="/sign-up-success" element={<SignUpSucceedPage />} />
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<PageNotFound />} />
+      <Route path="/sign-up-success" element={<SignUpSucceedPage />} />
+      <Route path="*" element={<PageNotFound />} />
+    </Routes>
   );
 };
 
