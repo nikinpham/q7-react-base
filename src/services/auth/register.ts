@@ -1,7 +1,7 @@
 import axiosClient from "@/configs/axios";
 import { ENDPOINT } from "@/constants";
 
-export const signUpService = (user: {
+export const register = (user: {
   fullname: string;
   email: string;
   password: string;
